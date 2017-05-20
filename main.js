@@ -25,4 +25,12 @@ io.sockets.on('connection', function(socket) {
     players.push(new player.Player(data.playerName, data.clientId));
     console.log(players);
   });
+
+  socket.on('exit', function(data) {
+    console.log('player has left :(');
+    players = players.filter(function (player) {
+      return player.getClientId() != data.clientId;
+    });
+    console.log(players);
+  });
 })

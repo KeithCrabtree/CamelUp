@@ -6,18 +6,28 @@
 <script src='https://cdn.socket.io/socket.io-1.4.5.js'></script>
 <script>
   var socket = io();
-
-  var join = function() {
-    socket.emit('join', {
-      clientId: generateClientId(),
-      playerName: document.getElementById('playerName').value
-    });
-  }
-
   var generateClientId = function() {
     function num() {
       return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
     }
     return num() + num();
+  }
+  var clientId = generateClientId();
+  var playerName = null;
+
+  var join = function() {
+    playerName = document.getElementById('playerName').value
+
+    socket.emit('join', {
+      clientId: clientId,
+      playerName: playerName
+    });
+  }
+
+  // Notify server when player leaves
+  window.onunload = function() {
+    socket.emit('exit', {
+      clientId: clientId
+    });
   }
 </script>
