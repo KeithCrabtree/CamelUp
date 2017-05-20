@@ -1,0 +1,9 @@
+<h1 style='text-align: center'>Get ready to Camel Up!</h1>
+
+<script src='https://cdn.socket.io/socket.io-1.4.5.js'></script>
+<script>
+  var socket = io();
+  socket.emit('howdy', {
+    from: 'Keith'
+  });
+</script>
