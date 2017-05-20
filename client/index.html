@@ -1,9 +1,23 @@
 <h1 style='text-align: center'>Get ready to Camel Up!</h1>
 
+<input type="text" id='playerName'>
+<button onclick='join()'>Join</button>
+
 <script src='https://cdn.socket.io/socket.io-1.4.5.js'></script>
 <script>
   var socket = io();
-  socket.emit('howdy', {
-    from: 'Keith'
-  });
+
+  var join = function() {
+    socket.emit('join', {
+      clientId: generateClientId(),
+      playerName: document.getElementById('playerName').value
+    });
+  }
+
+  var generateClientId = function() {
+    function num() {
+      return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
+    }
+    return num() + num();
+  }
 </script>

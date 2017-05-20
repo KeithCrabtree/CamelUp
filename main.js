@@ -1,6 +1,9 @@
+const player = require('./src/player');
+
 var express = require('express');
 var app = express();
 var server = require('http').Server(app);
+var players = [];
 
 // Server Setup
 app.get('/', function (req, res) {
@@ -16,7 +19,10 @@ io.sockets.on('connection', function(socket) {
   console.log('new socket connection opened..');
 
   // Event listeners
-  socket.on('howdy', function(data) {
-    console.log(data.from + ' said hi!');
+  socket.on('join', function(data) {
+    console.log(data.playerName + ' has joined the game!');
+    console.log('client id for ' + data.playerName + ': ' + data.clientId);
+    players.push(new player.Player(data.playerName, data.clientId));
+    console.log(players);
   });
 })
