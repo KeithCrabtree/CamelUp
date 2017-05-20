@@ -1,0 +1,23 @@
+{
+  "name": "camelup",
+  "version": "1.0.0",
+  "description": "Online multiplayer version of the popular board game from Z-Man Games",
+  "main": "main.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KeithCrabtree/CamelUp.git"
+  },
+  "author": "Keith Crabtree",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KeithCrabtree/CamelUp/issues"
+  },
+  "homepage": "https://github.com/KeithCrabtree/CamelUp#readme",
+  "dependencies": {
+    "express": "^4.15.3",
+    "socket.io": "^2.0.1"
+  }
+}
